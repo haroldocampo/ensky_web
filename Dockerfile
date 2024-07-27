@@ -20,7 +20,7 @@ RUN npm run build
 RUN npm install -g serve
 
 # Expose the port the app will run on
-EXPOSE 3001
+EXPOSE 3000
 
-# Define the command to run the application
-CMD ["serve", "-s", "build"]
+# Define the command to run the application, rebuilding with the correct environment variable
+CMD REACT_APP_API_URL=$REACT_APP_API_URL npm run build && serve -s build
